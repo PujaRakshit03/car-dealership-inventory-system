@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
 
 from fastapi import Depends, FastAPI, HTTPException, Request, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError, jwt
 from pydantic import BaseModel, ConfigDict, Field, field_validator
@@ -68,6 +69,7 @@ class TokenResponse(BaseModel):
 class UserIdentity(BaseModel):
     id: int
     username: str
+    role: str
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -124,6 +126,13 @@ def get_session(request: Request) -> Generator[Session, None, None]:
 
 
 app = FastAPI(lifespan=lifespan)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
+)
 bearer_scheme = HTTPBearer(auto_error=False)
 
 

@@ -37,3 +37,8 @@ Thumbs.db
 *.db
 *.sqlite
 *.sqlite3
+# Local screenshot credentials and demo database
+screenshots/.env.screenshots.local
+screenshots/screenshot-demo.sqlite3
+
+desktop.ini
