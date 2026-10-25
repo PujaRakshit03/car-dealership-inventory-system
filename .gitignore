@@ -1,0 +1,39 @@
+# Python
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Frontend dependencies and builds
+node_modules/
+dist/
+
+# Coverage output
+.coverage
+.coverage.*
+coverage/
+htmlcov/
+
+# Editor and OS-generated files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Local SQLite databases
+*.db
+*.sqlite
+*.sqlite3
