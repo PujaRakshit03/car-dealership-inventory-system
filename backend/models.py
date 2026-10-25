@@ -1,4 +1,4 @@
-from sqlalchemy import Float, Integer, String
+from sqlalchemy import Float, Integer, String, text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -23,3 +23,9 @@ class User(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     username: Mapped[str] = mapped_column(String(64), unique=True, index=True, nullable=False)
     hashed_password: Mapped[str] = mapped_column(String(60), nullable=False)
+    role: Mapped[str] = mapped_column(
+        String(16),
+        nullable=False,
+        default="user",
+        server_default=text("'user'"),
+    )
